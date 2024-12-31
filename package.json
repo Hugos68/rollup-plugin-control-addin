@@ -1,9 +1,7 @@
 {
 	"name": "rollup-plugin-control-addin",
 	"version": "0.0.1",
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"exports": {
 		".": {
 			"import": {
