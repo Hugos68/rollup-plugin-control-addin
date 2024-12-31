@@ -2,10 +2,12 @@ import type { Plugin } from "rollup";
 
 export interface ControlAddinOptions {
 	name?: string;
+	lines?: string[];
 }
 
 export default function (options: ControlAddinOptions = {}): Plugin {
 	const name = options.name ?? "ControlAddin";
+	const lines = options.lines ?? [];
 	return {
 		name: "control-addin",
 		outputOptions(options) {
@@ -23,7 +25,7 @@ export default function (options: ControlAddinOptions = {}): Plugin {
     StyleSheets = './index.css';
     HorizontalStretch = true;
     HorizontalShrink = true;
-}`,
+    ${lines.map((line) => `${line}\n`)}`,
 			});
 		},
 	};
