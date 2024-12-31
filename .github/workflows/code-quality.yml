@@ -4,8 +4,8 @@ on:
   push:
 
 jobs:
-  release:
-    name: Release
+  format:
+    name: Format
     runs-on: ubuntu-22.04
     strategy:
       matrix:
