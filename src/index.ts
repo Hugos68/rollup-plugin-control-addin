@@ -1,18 +1,45 @@
 import type { Plugin } from "rollup";
+import css from "rollup-plugin-import-css";
+
+export type ApplicationLanguagePrimitive = "Text" | "Boolean" | "Integer";
+
+interface ApplicationLanguageArgument {
+	name: string;
+	type: ApplicationLanguagePrimitive;
+}
+
+export interface ApplicationLanguageMethod {
+	type: "event" | "procedure";
+	name: string;
+	args: ApplicationLanguageArgument[];
+	returnType: ApplicationLanguagePrimitive;
+}
 
 export interface ControlAddinOptions {
 	name?: string;
-	lines?: string[];
+	methods?: ApplicationLanguageMethod[];
 }
 
-export default function (options: ControlAddinOptions = {}): Plugin {
+function formatMethod(method: ApplicationLanguageMethod) {
+	const args = method.args
+		.map((arg) => {
+			return `${arg.name}: ${arg.type}`;
+		})
+		.join(";");
+	return `${method.type} ${method.name}(${args})${method.returnType ? `: ${method.returnType}` : ""};`;
+}
+
+export default function controlAddin(
+	options: ControlAddinOptions = {},
+): Plugin {
 	const name = options.name ?? "ControlAddin";
-	const lines = options.lines ?? [];
+	const methods = options.methods ?? [];
 	return {
 		name: "control-addin",
-		outputOptions(options) {
+		outputOptions() {
 			return {
-				...options,
+				plugins: [css()],
+				file: "dist/index.js",
 				format: "cjs",
 			};
 		},
@@ -25,7 +52,7 @@ export default function (options: ControlAddinOptions = {}): Plugin {
     StyleSheets = './index.css';
     HorizontalStretch = true;
     HorizontalShrink = true;
-    ${lines.map((line) => `${line}\n`)}`,
+    ${methods.map((method) => formatMethod(method)).join("\n")}`,
 			});
 		},
 	};

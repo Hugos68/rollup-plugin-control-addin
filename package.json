@@ -3,10 +3,7 @@
 	"description": "A Rollup plugin for building AL Control Add-in's.",
 	"version": "0.0.2",
 	"license": "MIT",
-	"keywords": [
-		"rollup-plugin",
-		"control-addin"
-	],
+	"keywords": ["rollup-plugin", "control-addin"],
 	"author": {
 		"name": "Hugo Korte",
 		"email": "hugokorteapple@gmail.com"
@@ -15,9 +12,7 @@
 		"type": "git",
 		"url": "https://github.com/Hugos68/rollup-plugin-control-addin"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"sideEffects": false,
 	"exports": {
 		".": {
@@ -46,5 +41,8 @@
 		"typescript": "^5.7.2",
 		"unbuild": "^3.2.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"rollup-plugin-import-css": "^3.5.8"
+	}
 }

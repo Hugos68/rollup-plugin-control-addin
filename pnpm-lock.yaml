@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      rollup-plugin-import-css:
+        specifier: ^3.5.8
+        version: 3.5.8(rollup@4.29.1)
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.9.4
@@ -1270,6 +1274,12 @@ packages:
     peerDependencies:
       rollup: ^3.29.4 || ^4
       typescript: ^4.5 || ^5.0
+
+  rollup-plugin-import-css@3.5.8:
+    resolution: {integrity: sha512-a3YsZnwHz66mRHCKHjaPCSfWczczvS/HTkgDc+Eogn0mt/0JZXz0WjK0fzM5WwBpVtOqHB4/gHdmEY40ILsaVg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      rollup: ^2.x.x || ^3.x.x || ^4.x.x
 
   rollup@4.29.1:
     resolution: {integrity: sha512-RaJ45M/kmJUzSWDs1Nnd5DdV4eerC98idtUOVr6FfKcgxqvjwHmxc5upLF9qZU9EpsVzzhleFahrT3shLuJzIw==}
@@ -2596,6 +2606,11 @@ snapshots:
       typescript: 5.7.2
     optionalDependencies:
       '@babel/code-frame': 7.26.2
+
+  rollup-plugin-import-css@3.5.8(rollup@4.29.1):
+    dependencies:
+      '@rollup/pluginutils': 5.1.4(rollup@4.29.1)
+      rollup: 4.29.1
 
   rollup@4.29.1:
     dependencies:
