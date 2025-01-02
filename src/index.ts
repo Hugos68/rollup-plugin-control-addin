@@ -38,7 +38,11 @@ export default function controlAddin(
 		name: "control-addin",
 		outputOptions() {
 			return {
-				plugins: [css()],
+				plugins: [
+					css({
+						output: "index.css",
+					}),
+				],
 				file: "dist/index.js",
 				format: "cjs",
 			};
