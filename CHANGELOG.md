@@ -1,5 +1,11 @@
 # rollup-plugin-control-addin
 
+## 0.0.4
+
+### Patch Changes
+
+- 7b57b26: Fix broken `css` plugin inclusion.
+
 ## 0.0.3
 
 ### Patch Changes
