@@ -36,14 +36,12 @@ export default function controlAddin(
 	const methods = options.methods ?? [];
 	return {
 		name: "control-addin",
-		outputOptions() {
+		outputOptions(options) {
+			if (Array.isArray(options.plugins)) {
+				options.plugins.push(css({ output: "index.css" }));
+			}
 			return {
-				plugins: [
-					css({
-						output: "index.css",
-					}),
-				],
-				file: "dist/index.js",
+				...options,
 				format: "cjs",
 			};
 		},
@@ -51,12 +49,16 @@ export default function controlAddin(
 			this.emitFile({
 				fileName: `${name}.al`,
 				type: "prebuilt-chunk",
-				code: `controladdin ${name} {
+				code: `
+controladdin ${name} 
+{
     StartupScript = './index.js';
-    StyleSheets = './index.css';
+    StyleSheets = './styles.css';
     HorizontalStretch = true;
     HorizontalShrink = true;
-    ${methods.map((method) => formatMethod(method)).join("\n")}`,
+    ${methods.map((method) => formatMethod(method)).join("\n")}
+}
+`.trim(),
 			});
 		},
 	};
